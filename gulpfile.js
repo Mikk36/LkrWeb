@@ -19,11 +19,11 @@ var nodemon = require('gulp-nodemon');
 var util = require("util");
 
 var path = {
-  source:'public/app/src/**/*.js',
-  html:'public/app/src/**/*.html',
-  style:'public/app/styles/**/*.css',
-  output:'public/app/dist/',
-  doc:'public/app/doc'
+  source: ["public/polymer/**/*.js", "!public/polymer/bower_components/**/*.js"],
+  html: ["public/polymer/**/*.html", "!public/polymer/bower_components/**/*.html"],
+  style: ["public/polymer/**/*.css", "!public/polymer/bower_components/**/*.css"],
+  //output:'public/app/dist/',
+  //doc:'public/app/doc'
 };
 
 var compilerOptions = {
@@ -54,22 +54,25 @@ var compilerOptions = {
 var jshintConfig = {esnext:true};
 
 gulp.task('clean', function() {
-  return gulp.src([path.output])
-    .pipe(vinylPaths(del));
+  return false;
+  //return gulp.src([path.output])
+  //  .pipe(vinylPaths(del));
 });
 
 gulp.task('build-system', function () {
-  return gulp.src(path.source)
-    .pipe(plumber())
-    .pipe(changed(path.output, {extension: '.js'}))
-    .pipe(babel(assign({}, compilerOptions, {modules:'system'})))
-    .pipe(gulp.dest(path.output));
+  return false;
+  //return gulp.src(path.source)
+  //  .pipe(plumber())
+  //  .pipe(changed(path.output, {extension: '.js'}))
+  //  .pipe(babel(assign({}, compilerOptions, {modules:'system'})))
+  //  .pipe(gulp.dest(path.output));
 });
 
 gulp.task('build-html', function () {
-  return gulp.src(path.html)
-    .pipe(changed(path.output, {extension: '.html'}))
-    .pipe(gulp.dest(path.output));
+  return false;
+  //return gulp.src(path.html)
+  //  .pipe(changed(path.output, {extension: '.html'}))
+  //  .pipe(gulp.dest(path.output));
 });
 
 gulp.task('lint', function() {
@@ -140,7 +143,8 @@ gulp.task('nodemon', function (cb) {
     },
     "ignore": [
       ".git",
-      "public"
+      "public",
+      "node_modules"
     ]
   })
     .on('start', function onStart() {

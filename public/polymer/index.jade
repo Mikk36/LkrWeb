@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title Polymer Test
+    meta(name="viewport", content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+    script(src="bower_components/webcomponentsjs/webcomponents.js")
+    script(src="/socket.io/socket.io.js")
+    link(rel="import", href="elements.html")
+    link(rel="stylesheet", type="text/css", href="styles/main.css")
+  body(unresolved)
+    template#app(is="auto-binding")
+      core-drawer-panel
+        core-header-panel(drawer)
+          core-toolbar LkrWeb
+          core-menu(selected="{{route}}", selectedItem="{{menuItem}}", valueattr="data-route")
+            core-item(data-route="avaleht", label="Avaleht")
+              a(href="/")
+            core-item(data-route="tellimused", label="Tellimused")
+              a(href="/tellimused")
+            core-item(data-route="arved", label="Arved")
+              a(href="/arved")
+        core-header-panel(main)
+          core-toolbar
+            paper-icon-button(icon="menu", core-drawer-toggle)
+            div {{menuItem.label}}
+            span(flex)
+            paper-icon-button.searchButton(icon="search")
+            paper-progress.bottom.fit(value="30")
+          core-pages(selected="{{route}}", valueattr="data-route")
+            section(data-route="avaleht")
+              div Avalehe sisu
+            section(data-route="tellimused")
+              div Tellimuste sisu
+            section(data-route="arved")
+              div Arvete sisu
+
+    script(src="bower_components/page.js/page.js")
+    script(src="scripts/app.js")
